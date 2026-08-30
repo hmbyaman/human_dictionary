@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUMAN DICTIONARY // SIGNAL STATION</title>
+    <style>
+        :root {
+            --bg-color: #080808;
+            --text-color: #e0e0e0;
+            --accent-color: #ffffff;
+            --dim-color: #555555;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            border-bottom: 1px solid var(--dim-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .system-header {
+            text-transform: lowercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            color: #00ff66;
+            font-size: 11px;
+        }
+
+        .terminal-body {
+            flex-grow: 1;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            text-transform: lowercase;
+        }
+
+        .log-entry .time {
+            color: var(--dim-color);
+            margin-right: 10px;
+        }
+
+        .cmd-line {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .prompt {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        footer {
+            border-top: 1px solid var(--dim-color);
+            padding-top: 15px;
+            margin-top: 30px;
+            font-size: 11px;
+            color: var(--dim-color);
+            display: flex;
+            justify-content: space-between;
+            text-transform: lowercase;
+        }
+
+        a {
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--dim-color);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="system-header">
+            [system: human_dictionary] // [status: <span class="status-badge">broadcasting</span>]<br>
+            [protocol: hmby_g] // [location: archive_node_01]
+        </div>
+    </header>
+
+    <main class="terminal-body">
+        <div class="log-entry">
+            <span class="time">[2026.08.30 20:56]</span> core_archive_initialized // all_media_blocks_indexed
+        </div>
+        <div class="log-entry">
+            <span class="time">[2026.08.30 20:57]</span> signal_strength: 100% // external_observers_linked
+        </div>
+        <div class="log-entry">
+            <span class="time">[2026.08.30 20:58]</span> status: waiting_for_command...
+        </div>
+
+        <div class="cmd-line">
+            <span class="prompt">hmby_g@human_dictionary:~$</span>
+            <span>fetch_archive_manifest --all</span>
+        </div>
+    </main>
+
+    <footer>
+        <div>hmby_g // hmby studio</div>
+        <div>human dictionary archive project</div>
+    </footer>
+
+</body>
+</html>
