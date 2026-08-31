@@ -3,129 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUMAN DICTIONARY // SIGNAL STATION</title>
+    <title>HUMAN DICTIONARY // TERMINAL NODE 01</title>
     <style>
         :root {
-            --bg-color: #080808;
-            --text-color: #e0e0e0;
-            --accent-color: #ffffff;
-            --dim-color: #555555;
-            --font-mono: 'Courier New', Courier, monospace;
+            --bg-color: #0a0a0a;
+            --text-color: #d1d5db;
+            --accent-color: #22c55e;
+            --dim-color: #6b7280;
+            --font-stack: 'Courier New', Courier, monospace;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: var(--font-mono);
-            font-size: 13px;
+            font-family: var(--font-stack);
+            font-size: 14px;
             line-height: 1.6;
             padding: 20px;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            min-height: 100vh;
         }
 
         header {
-            border-bottom: 1px solid var(--dim-color);
-            padding-bottom: 15px;
+            border-bottom: 1px solid #262626;
+            padding-bottom: 12px;
             margin-bottom: 20px;
         }
 
-        .system-header {
-            text-transform: lowercase;
-            letter-spacing: 1px;
-        }
-
-        .status-badge {
-            color: #00ff66;
-            font-size: 11px;
-        }
-
-        .terminal-body {
-            flex-grow: 1;
-        }
-
-        .log-entry {
-            margin-bottom: 8px;
-            text-transform: lowercase;
-        }
-
-        .log-entry .time {
+        .system-info {
             color: var(--dim-color);
-            margin-right: 10px;
+            font-size: 12px;
         }
 
-        .cmd-line {
+        .system-info span {
+            color: var(--accent-color);
+        }
+
+        #terminal-output {
+            flex-grow: 1;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .line {
+            margin-bottom: 4px;
+        }
+
+        .command-line {
             display: flex;
             align-items: center;
-            margin-top: 20px;
+            border-top: 1px solid #262626;
+            padding-top: 12px;
         }
 
         .prompt {
             color: var(--accent-color);
             margin-right: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-family: var(--font-stack);
+            font-size: 14px;
+            flex-grow: 1;
+            outline: none;
+        }
+
+        .media-container {
+            margin-top: 15px;
+            max-width: 480px;
+            border: 1px solid #262626;
+            padding: 8px;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            display: block;
         }
 
         footer {
-            border-top: 1px solid var(--dim-color);
-            padding-top: 15px;
-            margin-top: 30px;
-            font-size: 11px;
+            margin-top: auto;
+            padding-top: 20px;
             color: var(--dim-color);
-            display: flex;
-            justify-content: space-between;
-            text-transform: lowercase;
-        }
-
-        a {
-            color: var(--text-color);
-            text-decoration: none;
-            border-bottom: 1px dotted var(--dim-color);
-        }
-
-        a:hover {
-            color: var(--accent-color);
-            border-bottom: 1px solid var(--accent-color);
+            font-size: 11px;
+            border-top: 1px solid #171717;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="system-header">
-            [system: human_dictionary] // [status: <span class="status-badge">broadcasting</span>]<br>
-            [protocol: hmby_g] // [location: archive_node_01]
-        </div>
+        <div class="system-info">[system: human_dictionary] // [status: <span>active_node</span>]</div>
+        <div class="system-info">[protocol: hmby_g] // [location: archive_node_01]</div>
     </header>
 
-    <main class="terminal-body">
-        <div class="log-entry">
-            <span class="time">[2026.08.30 20:56]</span> core_archive_initialized // all_media_blocks_indexed
-        </div>
-        <div class="log-entry">
-            <span class="time">[2026.08.30 20:57]</span> signal_strength: 100% // external_observers_linked
-        </div>
-        <div class="log-entry">
-            <span class="time">[2026.08.30 20:58]</span> status: waiting_for_command...
-        </div>
+    <div id="terminal-output">
+        <div class="line">core_archive_initialized // type 'help' for available commands.</div>
+    </div>
 
-        <div class="cmd-line">
-            <span class="prompt">hmby_g@human_dictionary:~$</span>
-            <span>fetch_archive_manifest --all</span>
-        </div>
-    </main>
+    <div class="command-line">
+        <span class="prompt">hmby_g@human_dictionary:~$</span>
+        <input type="text" id="command-input" autofocus autocomplete="off" spellcheck="false">
+    </div>
 
     <footer>
-        <div>hmby_g // hmby studio</div>
-        <div>human dictionary archive project</div>
+        hmby_g // hmby studio
     </footer>
 
+    <script>
+        const input = document.getElementById('command-input');
+        const output = document.getElementById('terminal-output');
+
+        const commands = {
+            'help': 'AVAILABLE COMMANDS:\n  help        - show list of system commands\n  list        - list active video archive blocks\n  manifesto   - display core project manifesto\n  play [id]   - stream block media (e.g. play 03, play 04, play 05)\n  clear       - clear terminal screen',
+            'manifesto': 'HUMAN DICTIONARY MANIFESTO:\n--------------------------------------------------\nDİJİTAL VE FİZİKSEL VARLIĞIN BİLİNÇ KATMANLARINI\nINCELEYEN TEKNİK DÖKÜMANTASYON VE MEDYA ARŞİVİ.\nPROTOCOL: HMBY_G MECHANICAL DISCIPLINE.\n--------------------------------------------------',
+            'list': 'ARCHIVE INDEX:\n  [03] HMBYSTUDIO VOL.04 PHANTOM SPECTRUM REC_03.mp4\n  [04] HMBYSTUDIO VOL.04 PHANTOM SPECTRUM REC_04.mp4\n  [05] HMBYSTUDIO VOL.04 PHANTOM SPECTRUM REC_05.mp4\n\ntype "play [id]" to view block media.'
+        };
+
+        const mediaFiles = {
+            '03': 'HmbyStudio Vol.04 Phantom Spectrum REC_03.mp4',
+            '04': 'HmbyStudio Vol.04 Phantom Spectrum REC_04.mp4',
+            '05': 'HmbyStudio Vol.04 Phantom Spectrum REC_05.mp4'
+        };
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const fullCommand = this.value.trim();
+                const args = fullCommand.split(' ');
+                const cmd = args[0].toLowerCase();
+                const param = args[1];
+
+                appendOutput(`hmby_g@human_dictionary:~$ ${fullCommand}`);
+
+                if (cmd === 'clear') {
+                    output.innerHTML = '';
+                } else if (cmd === 'play') {
+                    if (param && mediaFiles[param]) {
+                        appendOutput(`streaming block [${param}]...`);
+                        appendMedia(mediaFiles[param]);
+                    } else {
+                        appendOutput('error: invalid block id. use "list" to see available blocks.');
+                    }
+                } else if (commands[cmd]) {
+                    appendOutput(commands[cmd]);
+                } else if (cmd !== '') {
+                    appendOutput(`command not found: ${cmd}. type "help" for available commands.`);
+                }
+
+                this.value = '';
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        });
+
+        function appendOutput(text) {
+            const line = document.createElement('div');
+            line.className = 'line';
+            line.innerText = text;
+            output.appendChild(line);
+        }
+
+        function appendMedia(fileName) {
+            const container = document.createElement('div');
+            container.className = 'media-container';
+            container.innerHTML = `<video controls autoplay loop src="${encodeURIComponent(fileName)}"></video>`;
+            output.appendChild(container);
+        }
+    </script>
 </body>
 </html>
