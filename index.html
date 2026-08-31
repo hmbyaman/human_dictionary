@@ -179,7 +179,11 @@
         function appendMedia(fileName) {
             const container = document.createElement('div');
             container.className = 'media-container';
-            const encodedPath = encodeURI(fileName);
+            const encodedPath = fileName.split('').map(char => {
+                if (char === 'ı') return '%C4%B1';
+                if (char === ' ') return '%20';
+                return encodeURIComponent(char);
+            }).join('');
             container.innerHTML = `<video controls autoplay loop muted playsinline src="${encodedPath}"></video>`;
             output.appendChild(container);
         }
