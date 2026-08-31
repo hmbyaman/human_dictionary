@@ -133,11 +133,11 @@
         };
 
         const mediaFiles = {
-            '01': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 01.mp4',
-            '02': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 02.mp4',
+            '01': '01.mp4',
+            '02': '02.mp4',
             '03': '03.mp4',
-            '04': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 04.mp4',
-            '05': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 05.mp4'
+            '04': '04.mp4',
+            '05': '05.mp4'
         };
 
         input.addEventListener('keydown', function(e) {
@@ -179,8 +179,7 @@
         function appendMedia(fileName) {
             const container = document.createElement('div');
             container.className = 'media-container';
-            const cleanPath = encodeURI(fileName);
-            container.innerHTML = `<video controls autoplay loop muted playsinline src="${cleanPath}"></video>`;
+            container.innerHTML = `<video controls autoplay loop muted playsinline src="${fileName}"></video>`;
             output.appendChild(container);
         }
     </script>
