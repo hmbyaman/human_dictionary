@@ -129,13 +129,13 @@
         const commands = {
             'help': 'AVAILABLE COMMANDS:\n  help        - show list of system commands\n  list        - list active video archive blocks\n  manifesto   - display core project manifesto\n  play [id]   - stream block media (e.g. play 01, play 02, play 03)\n  clear       - clear terminal screen',
             'manifesto': 'HUMAN DICTIONARY MANIFESTO:\n--------------------------------------------------\nDİJİTAL VE FİZİKSEL VARLIĞIN BİLİNÇ KATMANLARINI\nINCELEYEN TEKNİK DÖKÜMANTASYON VE MEDYA ARŞİVİ.\nPROTOCOL: HMBY_G MECHANICAL DISCIPLINE.\n--------------------------------------------------',
-            'list': 'ARCHIVE INDEX:\n  [01] Hmbystudıo Vol.04 Phantom Spectrum Rec 01.mp4\n  [02] Hmbystudıo Vol.04 Phantom Spectrum Rec 02.mp4\n  [03] Hmbystudıo Vol.04 Phantom Spectrum Rec 03(1).mp4\n  [04] Hmbystudıo Vol.04 Phantom Spectrum Rec 04.mp4\n  [05] Hmbystudıo Vol.04 Phantom Spectrum Rec 05.mp4\n\ntype "play [id]" to view block media.'
+            'list': 'ARCHIVE INDEX:\n  [01] Phantom Spectrum Rec 01\n  [02] Phantom Spectrum Rec 02\n  [03] Phantom Spectrum Rec 03\n  [04] Phantom Spectrum Rec 04\n  [05] Phantom Spectrum Rec 05\n\ntype "play [id]" to view block media.'
         };
 
         const mediaFiles = {
             '01': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 01.mp4',
             '02': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 02.mp4',
-            '03': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 03(1).mp4',
+            '03': '03.mp4',
             '04': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 04.mp4',
             '05': 'Hmbystudıo Vol.04 Phantom Spectrum Rec 05.mp4'
         };
@@ -179,7 +179,7 @@
         function appendMedia(fileName) {
             const container = document.createElement('div');
             container.className = 'media-container';
-            const cleanPath = fileName.replace(/ı/g, '%C4%B1').replace(/ /g, '%20').replace(/\(/g, '%28').replace(/\)/g, '%29');
+            const cleanPath = encodeURI(fileName);
             container.innerHTML = `<video controls autoplay loop muted playsinline src="${cleanPath}"></video>`;
             output.appendChild(container);
         }
