@@ -129,7 +129,7 @@
         const commands = {
             'help': 'AVAILABLE COMMANDS:\n  help        - show list of system commands\n  list        - list active video archive blocks\n  manifesto   - display core project manifesto\n  play [id]   - stream block media (e.g. play 03, play 04, play 05)\n  clear       - clear terminal screen',
             'manifesto': 'HUMAN DICTIONARY MANIFESTO:\n--------------------------------------------------\nDİJİTAL VE FİZİKSEL VARLIĞIN BİLİNÇ KATMANLARINI\nINCELEYEN TEKNİK DÖKÜMANTASYON VE MEDYA ARŞİVİ.\nPROTOCOL: HMBY_G MECHANICAL DISCIPLINE.\n--------------------------------------------------',
-            'list': 'ARCHIVE INDEX:\n  [03] HMBYSTUDIO VOL.04 PHANTOM SPECTRUM REC_03.mp4\n  [04] HMBYSTUDIO VOL.04 PHANTOM SPECTRUM REC_04.mp4\n  [05] HMBYSTUDIO VOL.04 PHANTOM SPECTRUM REC_05.mp4\n\ntype "play [id]" to view block media.'
+            'list': 'ARCHIVE INDEX:\n  [03] HmbyStudio Vol.04 Phantom Spectrum REC_03.mp4\n  [04] HmbyStudio Vol.04 Phantom Spectrum REC_04.mp4\n  [05] HmbyStudio Vol.04 Phantom Spectrum REC_05.mp4\n\ntype "play [id]" to view block media.'
         };
 
         const mediaFiles = {
@@ -177,9 +177,13 @@
         function appendMedia(fileName) {
             const container = document.createElement('div');
             container.className = 'media-container';
-            container.innerHTML = `<video controls autoplay loop src="${encodeURIComponent(fileName)}"></video>`;
+            container.innerHTML = `<video controls autoplay loop muted playsinline src="${encodeURIComponent(fileName)}"></video>`;
             output.appendChild(container);
         }
     </script>
 </body>
 </html>
+     
+       
+        
+   
