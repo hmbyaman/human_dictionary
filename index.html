@@ -209,6 +209,47 @@
       console.log(">>> exec_huseyin_husnu_yaman_phantom_archive_complete", ISSUE_METADATA);
     </script>
   </section>
+<section id="issue_01" data-status="archived" data-ref="VOL.04">
+    <div class="archive-header">
+      <h2>PHANTOM_SPECTRUM_MAG // ISSUE_01</h2>
+      <p>CREATOR: HÜSEYİN HÜSNÜ YAMAN // SYSTEM: HMBY STUDIO</p>
+    </div>
 
+    <div class="video-container" style="max-width: 400px; margin: 25px 0;">
+      <video controls style="width: 100%; height: auto; display: block;">
+        <source src="01.mp4" type="video/mp4">
+        browser_does_not_support_video_element
+      </video>
+    </div>
+
+    <script>
+      const ISSUE_METADATA = {
+        creator    : "HUSEYIN_HUSNU_YAMAN",
+        project    : "PHANTOM_SPECTRUM_MAG // ISSUE_01",
+        archive_ref: "HMBY_STUDIO // VOL.04",
+        scope      : "FORENSIC_BIOLOGICAL_ARCHIVE_EDIT",
+        resolution : "1080x1350 9:16",
+        duration   : "68_SEC",
+        status     : "system_online"
+      };
+      console.log(">>> exec_huseyin_husnu_yaman_phantom_archive_complete", ISSUE_METADATA);
+
+      // TERMINAL COMMAND LISTENER // MAG ROUTING
+      const inputField = document.querySelector('.terminal-input, input');
+      if (inputField) {
+        inputField.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            const val = this.value.trim().toLowerCase();
+            if (val === 'mag' || val === 'mag 01' || val === 'mag01' || val === 'issue 01') {
+              const magTarget = document.getElementById('issue_01');
+              if (magTarget) {
+                magTarget.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          }
+        });
+      }
+    </script>
+  </section>
 </body>
 </html>
