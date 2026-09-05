@@ -56,7 +56,7 @@
 
     <div id="terminal">
         <div id="terminal-output">
-            <div class="line">HUMAN DICTIONARY TERMINAL [VERSION 1.0.7]</div>
+            <div class="line">HUMAN DICTIONARY TERMINAL [VERSION 1.0.8]</div>
             <div class="line">TYPE "help" FOR AVAILABLE COMMANDS.</div>
             <div class="line">--------------------------------------------------</div>
         </div>
@@ -71,15 +71,17 @@
         const output = document.getElementById('terminal-output');
 
         const commands = {
-            'help': 'AVAILABLE COMMANDS:\n  help        - show list of system commands\n  list        - list active video archive blocks\n  manifesto   - display core project manifesto\n  mag 01      - stream issue 01 magazine video\n  play [id]   - stream block media (e.g. play 01, play 02)\n  clear       - clear terminal screen',
+            'help': 'AVAILABLE COMMANDS:\n  help        - show list of system commands\n  list        - list active video archive blocks\n  manifesto   - display core project manifesto\n  mag 01      - stream issue 01 magazine video\n  play [id]   - stream block media (e.g. play 01, play 04)\n  clear       - clear terminal screen',
             'manifesto': 'HUMAN DICTIONARY MANIFESTO:\n--------------------------------------------------\nTECHNICAL DOCUMENTATION AND MEDIA ARCHIVE\nANALYZING LAYERS OF DIGITAL AND PHYSICAL CONSCIOUSNESS.\nPROTOCOL: HMBY_G MECHANICAL DISCIPLINE.\n--------------------------------------------------',
-            'list': 'ARCHIVE INDEX:\n  [01] Phantom Spectrum Rec 01\n  [02] Phantom Spectrum Rec 02\n  [03] Phantom Spectrum Rec 03\n\ntype "play [id]" to view block media.'
+            'list': 'ARCHIVE INDEX:\n  [01] Phantom Spectrum Rec 01\n  [02] Phantom Spectrum Rec 02\n  [03] Phantom Spectrum Rec 03\n  [04] Phantom Spectrum Rec 04\n  [05] Phantom Spectrum Rec 05\n\ntype "play [id]" to view block media.'
         };
 
         const mediaFiles = {
             '01': '01.mp4',
             '02': '02.mp4',
-            '03': '03.mp4'
+            '03': '03.mp4',
+            '04': '04.mp4',
+            '05': '05.mp4'
         };
 
         input.addEventListener('keydown', function(e) {
