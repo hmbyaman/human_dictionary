@@ -122,12 +122,12 @@
         hmby_g // hmby studio
     </footer>
 
-    <script>
+   <script>
         const input = document.getElementById('command-input');
         const output = document.getElementById('terminal-output');
 
         const commands = {
-            'help': 'AVAILABLE COMMANDS:\n  help        - show list of system commands\n  list        - list active video archive blocks\n  manifesto   - display core project manifesto\n  play [id]   - stream block media (e.g. play 01, play 02, play 03)\n  clear       - clear terminal screen',
+            'help': 'AVAILABLE COMMANDS:\n  help        - show list of system commands\n  list        - list active video archive blocks\n  manifesto   - display core project manifesto\n  mag [id]    - view magazine issue (e.g. mag 01)\n  play [id]   - stream block media (e.g. play 01, play 02, play 03)\n  clear       - clear terminal screen',
             'manifesto': 'HUMAN DICTIONARY MANIFESTO:\n--------------------------------------------------\nDİJİTAL VE FİZİKSEL VARLIĞIN BİLİNÇ KATMANLARINI\nINCELEYEN TEKNİK DÖKÜMANTASYON VE MEDYA ARŞİVİ.\nPROTOCOL: HMBY_G MECHANICAL DISCIPLINE.\n--------------------------------------------------',
             'list': 'ARCHIVE INDEX:\n  [01] Phantom Spectrum Rec 01\n  [02] Phantom Spectrum Rec 02\n  [03] Phantom Spectrum Rec 03\n  [04] Phantom Spectrum Rec 04\n  [05] Phantom Spectrum Rec 05\n\ntype "play [id]" to view block media.'
         };
@@ -151,6 +151,14 @@
 
                 if (cmd === 'clear') {
                     output.innerHTML = '';
+                } else if (cmd === 'mag' || cmd === 'issue') {
+                    const magTarget = document.getElementById('issue_01');
+                    if (magTarget) {
+                        appendOutput('loading issue_01 archive...');
+                        magTarget.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        appendOutput('error: issue section not found.');
+                    }
                 } else if (cmd === 'play') {
                     if (param && mediaFiles[param]) {
                         appendOutput(`streaming block [${param}]...`);
@@ -184,7 +192,7 @@
         }
     </script>
 
- <section id="issue_01" data-status="archived" data-ref="VOL.04">
+  <section id="issue_01" data-status="archived" data-ref="VOL.04">
     <div class="archive-header">
       <h2>PHANTOM_SPECTRUM_MAG // ISSUE_01</h2>
       <p>CREATOR: HÜSEYİN HÜSNÜ YAMAN // SYSTEM: HMBY STUDIO</p>
@@ -196,36 +204,4 @@
         browser_does_not_support_video_element
       </video>
     </div>
-
-    <script>
-      const ISSUE_METADATA = {
-        creator    : "HUSEYIN_HUSNU_YAMAN",
-        project    : "PHANTOM_SPECTRUM_MAG // ISSUE_01",
-        archive_ref: "HMBY_STUDIO // VOL.04",
-        scope      : "FORENSIC_BIOLOGICAL_ARCHIVE_EDIT",
-        resolution : "1080x1350 9:16",
-        duration   : "68_SEC",
-        status     : "system_online"
-      };
-      console.log(">>> exec_huseyin_husnu_yaman_phantom_archive_complete", ISSUE_METADATA);
-
-      // TERMINAL COMMAND LISTENER // MAG PRIORITIZED ROUTING
-      const inputField = document.querySelector('.terminal-input, input');
-      if (inputField) {
-        inputField.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter') {
-            const val = this.value.trim().toLowerCase();
-            
-            // MAG/DERGI KOMUTLARI PRIMACY // CACHE/PREVENT CONFLICT
-            if (val.includes('mag') || val.includes('issue')) {
-              e.preventDefault();
-              const magTarget = document.getElementById('issue_01');
-              if (magTarget) {
-                magTarget.scrollIntoView({ behavior: 'smooth' });
-              }
-            }
-          }
-        });
-      }
-    </script>
   </section>
