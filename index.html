@@ -152,12 +152,8 @@
                 if (cmd === 'clear') {
                     output.innerHTML = '';
                 } else if (cmd === 'mag' || cmd === 'issue') {
-                    if (param === '01' || param === '1' || !param) {
-                        appendOutput('loading issue_01 archive...');
-                        appendMagazine();
-                    } else {
-                        appendOutput(`error: issue [${param}] not found.`);
-                    }
+                    appendOutput('loading issue_01 archive...');
+                    appendMagazine();
                 } else if (cmd === 'play') {
                     if (param && mediaFiles[param]) {
                         appendOutput(`streaming block [${param}]...`);
@@ -193,18 +189,13 @@
         function appendMagazine() {
             const container = document.createElement('div');
             container.className = 'magazine-container';
-            container.style.cssText = 'margin: 20px 0; border-left: 2px solid #fff; padding-left: 15px;';
+            container.style.cssText = 'margin: 15px 0; padding: 10px; border-left: 2px solid #fff;';
             container.innerHTML = `
-                <div class="archive-header" style="margin-bottom: 10px;">
-                    <h2 style="font-size: 1.1em; margin: 0;">PHANTOM_SPECTRUM_MAG // ISSUE_01</h2>
-                    <p style="font-size: 0.8em; opacity: 0.7; margin: 5px 0 0 0;">CREATOR: HÜSEYİN HÜSNÜ YAMAN // SYSTEM: HMBY STUDIO</p>
-                </div>
-                <div class="video-container" style="max-width: 400px; margin-top: 10px;">
-                    <video controls autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
-                        <source src="01.mp4" type="video/mp4">
-                        browser_does_not_support_video_element
-                    </video>
-                </div>
+                <div style="font-weight: bold; margin-bottom: 5px;">PHANTOM_SPECTRUM_MAG // ISSUE_01</div>
+                <div style="font-size: 0.8em; opacity: 0.8; margin-bottom: 10px;">CREATOR: HÜSEYİN HÜSNÜ YAMAN // SYSTEM: HMBY STUDIO</div>
+                <video controls autoplay loop muted playsinline style="max-width: 400px; width: 100%; display: block;">
+                    <source src="01.mp4" type="video/mp4">
+                </video>
             `;
             output.appendChild(container);
         }
