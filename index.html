@@ -122,13 +122,13 @@
         hmby_g // hmby studio
     </footer>
 
-   <script>
+<script>
         const input = document.getElementById('command-input');
         const output = document.getElementById('terminal-output');
 
         const commands = {
             'help': 'AVAILABLE COMMANDS:\n  help        - show list of system commands\n  list        - list active video archive blocks\n  manifesto   - display core project manifesto\n  mag [id]    - view magazine issue (e.g. mag 01)\n  play [id]   - stream block media (e.g. play 01, play 02, play 03)\n  clear       - clear terminal screen',
-            'manifesto': 'HUMAN DICTIONARY MANIFESTO:\n--------------------------------------------------\nDİJİTAL VE FİZİKSEL VARLIĞIN BİLİNÇ KATMANLARINI\nINCELEYEN TEKNİK DÖKÜMANTASYON VE MEDYA ARŞİVİ.\nPROTOCOL: HMBY_G MECHANICAL DISCIPLINE.\n--------------------------------------------------',
+            'manifesto': 'HUMAN DICTIONARY MANIFESTO:\n--------------------------------------------------\nTECHNICAL DOCUMENTATION AND MEDIA ARCHIVE\nANALYZING LAYERS OF DIGITAL AND PHYSICAL CONSCIOUSNESS.\nPROTOCOL: HMBY_G MECHANICAL DISCIPLINE.\n--------------------------------------------------',
             'list': 'ARCHIVE INDEX:\n  [01] Phantom Spectrum Rec 01\n  [02] Phantom Spectrum Rec 02\n  [03] Phantom Spectrum Rec 03\n  [04] Phantom Spectrum Rec 04\n  [05] Phantom Spectrum Rec 05\n\ntype "play [id]" to view block media.'
         };
 
@@ -155,7 +155,11 @@
                     const magTarget = document.getElementById('issue_01');
                     if (magTarget) {
                         appendOutput('loading issue_01 archive...');
-                        magTarget.scrollIntoView({ behavior: 'smooth' });
+                        setTimeout(() => {
+                            magTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            const magVideo = magTarget.querySelector('video');
+                            if (magVideo) magVideo.play();
+                        }, 100);
                     } else {
                         appendOutput('error: issue section not found.');
                     }
@@ -173,7 +177,6 @@
                 }
 
                 this.value = '';
-                window.scrollTo(0, document.body.scrollHeight);
             }
         });
 
@@ -192,7 +195,7 @@
         }
     </script>
 
-  <section id="issue_01" data-status="archived" data-ref="VOL.04">
+  <section id="issue_01" data-status="archived" data-ref="VOL.04" style="padding-top: 50px;">
     <div class="archive-header">
       <h2>PHANTOM_SPECTRUM_MAG // ISSUE_01</h2>
       <p>CREATOR: HÜSEYİN HÜSNÜ YAMAN // SYSTEM: HMBY STUDIO</p>
